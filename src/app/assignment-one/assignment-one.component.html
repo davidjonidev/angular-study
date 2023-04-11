@@ -1,0 +1,17 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<ol class="list-group mb-4">
+				<li class="list-group-item list-group-item-action">Add a Input field which updates a property ('username') via Two-Way-Binding</li>
+				<li class="list-group-item list-group-item-action">Output the username property via String Interpolation (in a paragraph below input)</li>
+				<li class="list-group-item list-group-item-action">Add a button which may only be clicked if the username is NOT an empty string</li>
+				<li class="list-group-item list-group-item-action">Upon clicking the button, the username should be reset to an empty string</li>
+			</ol>
+			
+			<label>Username</label>
+			<input type="text" class="form-control mb-3" [(ngModel)]="username">
+			<p class="bg-dark text-white rounded p-2" *ngIf="username">{{ username }}</p>
+			<button class="btn btn-primary" *ngIf="username" (click)="resetUsername()">Reset</button>
+		</div>
+	</div>
+</div>
