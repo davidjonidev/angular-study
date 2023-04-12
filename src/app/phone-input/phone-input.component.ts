@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { createMask } from '@ngneat/input-mask';
+import { ToastrService } from 'ngx-toastr';
 import * as countryData from '../phone-input/country-codes.json';
 
 @Component({
@@ -11,15 +12,15 @@ import * as countryData from '../phone-input/country-codes.json';
 export class PhoneInputComponent implements OnInit {
   countryData: any = (countryData as any).default;
   selectedCountry: string = '';
-  countryMask = '';
+  countryMask = '##-####-####';
 
   phoneInputMask = createMask({
-    mask: '(9999-99)|(+(999) 9999-99)',
+    mask: '##-####-####',
     keepStatic: true,
   });
   phoneFC = new FormControl('');
 
-  constructor() {}
+  constructor(private toastr: ToastrService) {}
   ngOnInit() {
     console.log(this.countryData);
   }
@@ -32,5 +33,6 @@ export class PhoneInputComponent implements OnInit {
       keepStatic: true,
     });
     this.phoneFC = new FormControl('');
+    this.toastr.success('Mask is now: ' + this.countryMask);
   }
 }
